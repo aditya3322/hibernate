@@ -83,10 +83,10 @@ public class TestUserDetails extends TestCase
     		session.close();
     	}
     }
-    /*
+    
     public void testUserInsert2()
     {
-    	UserDetails user = new UserDetails();
+    	User user = new User();
     	user.setUserName("Athrav Awasthi");
     	user.setJoinedDate(new Date());
     	user.setHomeAddress(new Address("gaur city2", "Ghaziabad", "UP", "201009"));
@@ -106,5 +106,5 @@ public class TestUserDetails extends TestCase
     		session.close();
     	}
         assertTrue( true );
-    }*/
+    }
 }

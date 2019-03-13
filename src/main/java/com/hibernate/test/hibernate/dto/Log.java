@@ -7,7 +7,6 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Log {
-	
 	@Column (name = "transaction_time")
 	private Date txTime;
 	@Column (name = "activity")
@@ -30,7 +29,8 @@ public class Log {
 	public void setActivity(String activity) {
 		this.activity = activity;
 	}
-	
-	
-
+	@Override
+	public String toString() {
+		return "Log [txTime=" + txTime + ", activity=" + activity + "]";
+	}
 }
