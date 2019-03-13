@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.hibernate.test.hibernate.dto.Address;
-import com.hibernate.test.hibernate.dto.UserDetails;
+import com.hibernate.test.hibernate.dto.User;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -45,11 +45,11 @@ public class TestUserDetails extends TestCase
      */
     public void testUserInsert()
     {
-    	UserDetails user = new UserDetails();
-    	user.setUserName("Aditya Awasthi");
+    	User user = new User();
+    	user.setUserName("Ankit Awasthi");
     	user.setJoinedDate(new Date());
-    	user.setHomeAddress(new Address("gaur city2", "Ghaziabad", "UP", "201009"));
-    	user.setOfficeAddress(new Address("sector-125", "Noida", "UP", "201301"));
+    	user.setHomeAddress(new Address("Sarita Vihar", "Ghaziabad", "UP", "201009"));
+    	user.setOfficeAddress(new Address("sector 123", "Noida", "UP", "201301"));
     	user.setDescription("Father");
     	Session session = null;
     	try {
@@ -73,7 +73,7 @@ public class TestUserDetails extends TestCase
     	try {
     		session = factory.openSession();
     		session.beginTransaction();
-        	UserDetails user = session.get(UserDetails.class, 1);
+        	User user = session.get(User.class, 1);
         	System.out.println(user);
         	assertNotNull(user);
     	} catch (Exception e) {

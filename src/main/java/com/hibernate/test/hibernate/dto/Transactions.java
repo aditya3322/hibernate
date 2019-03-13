@@ -1,7 +1,7 @@
 package com.hibernate.test.hibernate.dto;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -9,10 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-@Entity
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Type;
+
+@Entity (name = "tansactions")
 @Table (name = "transactions")
 public class Transactions {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +25,12 @@ public class Transactions {
 	@Column (name = "user_name")
 	private String userName;
 	@ElementCollection
-	private Set<Log> logs = new HashSet<>();
+	@JoinTable (name = "transaction_logs",
+				joinColumns = @JoinColumn(name = "USER_ID")
+			)
+	//private Collection<Log> logs = new HashSet<>(); // no index supported 
+	@CollectionId(columns = {@Column(name = "log_id")}, generator = "native", type = @Type(type = "long")) // only supported by hibernate not by jpa
+	private Collection<Log> logs = new ArrayList<>(); // it support index
 	
 	public int getUserId() {
 		return userId;
@@ -35,10 +44,10 @@ public class Transactions {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Set<Log> getLogs() {
+	public Collection<Log> getLogs() {
 		return logs;
 	}
-	public void setLogs(Set<Log> logs) {
+	public void setLogs(Collection<Log> logs) {
 		this.logs = logs;
 	}
 	

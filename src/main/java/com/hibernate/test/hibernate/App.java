@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.hibernate.test.hibernate.dto.Address;
-import com.hibernate.test.hibernate.dto.UserDetails;
+import com.hibernate.test.hibernate.dto.User;
 
 /**
  * Hello world!

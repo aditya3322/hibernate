@@ -25,7 +25,7 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
         <mapping class="net.javaguides.hibernate.entity.Student" /> -->
-        <mapping class="com.hibernate.test.hibernate.dto.UserDetails" /> 
-        <mapping class="com.hibernate.test.hibernate.dto.LoginTransaction" /> 
+        <mapping class="com.hibernate.test.hibernate.dto.User" /> 
+        <mapping class="com.hibernate.test.hibernate.dto.Transactions" /> 
     </session-factory>
 </hibernate-configuration>

@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "users")
-public class UserDetails {
+public class User {
 	// natural (primary) keys are primary keys we have to provide the value
 	// unique keys are surrogate keys and it does'nt have business use case.
 	@Id // @EmbeddedId for primary key contains two fields

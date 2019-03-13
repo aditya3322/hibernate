@@ -40,10 +40,10 @@ public class TestLoginTransaction extends TestCase {
 	public void testAddTxns() {
 		Transactions txn = new Transactions();
 		txn.setUserName("aditya");
-		txn.getLogs().add(new Log(1, new Date(), "login"));
-		txn.getLogs().add(new Log(2, new Date(), "add data to cart"));
-		txn.getLogs().add(new Log(3, new Date(), "updated profile"));
-		txn.getLogs().add(new Log(4, new Date(), "deleted cart item"));
+		txn.getLogs().add(new Log(new Date(), "login"));
+		txn.getLogs().add(new Log(new Date(), "add data to cart"));
+		txn.getLogs().add(new Log(new Date(), "updated profile"));
+		txn.getLogs().add(new Log(new Date(), "deleted cart item"));
 		
 		Session session = null;
     	try {
