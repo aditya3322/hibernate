@@ -120,7 +120,7 @@ public class User {
 ```
 Now let's discuss about a scenario where Trasactions contains multiple Log. How we can maintain collection within same entity but different table.
 
-```
+```java
 @Entity (name = "tansactions")
 @Table (name = "transactions")
 public class Transactions {
@@ -139,10 +139,11 @@ Here we have Transactions entity cotains set of logs using @ElementCollection.
 Fetching logs collection can have to strategy 
 * Eggar 
 * Lazzy
+
 In case of eggar strategy we will fetch set of logs when we ask for the transactions
 and in case of lazy hibernate will create a Proxy Object which fetch set of logs when it ask for.
 
-```
+```java
 @Embeddable
 public class Log {
 	@Column (name = "transaction_time")
