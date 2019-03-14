@@ -118,3 +118,35 @@ public class User {
 	private String description;
 }
 ```
+Now let's discuss about a scenario where Trasactions contains multiple Log. How we can maintain collection within same entity but different table.
+
+```
+@Entity (name = "tansactions")
+@Table (name = "transactions")
+public class Transactions {
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column (name = "user_id")
+	private int userId;
+	@Column (name = "user_name")
+	private String userName;
+	@ElementCollection (fetch = FetchType.LAZY)
+	@JoinTable (name = "transaction_logs",
+				joinColumns = @JoinColumn(name = "USER_ID")
+			)
+	private Collection<Log> logs = new HashSet<>();
+```
+Here we have Transactions entity cotains set of logs using @ElementCollection. 
+Fetching logs collection can have to strategy 
+** Eggar 
+** Lazzy
+In case of eggar strategy we will fetch set of logs when we ask for the transactions
+and in case of lazy hibernate will create a Proxy Object which fetch set of logs when it ask for.
+
+```
+@Embeddable
+public class Log {
+	@Column (name = "transaction_time")
+	private Date txTime;
+	@Column (name = "activity")
+	private String activity;
+```
