@@ -37,7 +37,7 @@ public class Address {
 	private String pincode;
 }
 ``` 
-Create primary key was a composite key using @EmbeddedId which call as surrogate key
+Create primary key as a composite key using @EmbeddedId which call as surrogate key
 ```java
 @Entity
 @Table(name = "users")
@@ -59,5 +59,60 @@ public class Address {
 	private String city;
 }
 ```
-
-
+Suppose you have two address home address and office address. How we can store it in one table an with different column name.
+```
+@Entity
+@Table(name = "users")
+public class User {
+	// natural (primary) keys are primary keys we have to provide the value
+	// unique keys are surrogate keys and it does'nt have business use case.
+	@Id // @EmbeddedId for primary key contains two fields
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int userId;
+	private String userName;
+	@Temporal(TemporalType.DATE) // to save date 	only
+	private Date joinedDate;
+	/*@Transient // this field will be ignored by hibernate
+	private String address;*/
+	@Embedded
+	@AttributeOverrides({
+			@AttributeOverride(name = "street", column = @Column(name = "home_street_name")), // to override attribute/column in address 
+			@AttributeOverride(name = "city", column = @Column(name = "home_city_name")),
+			@AttributeOverride(name = "state", column = @Column(name = "home_state_name")),
+			@AttributeOverride(name = "pincode", column = @Column(name = "home_pin_code"))
+	})
+	private Address homeAddress;
+	@Embedded
+	private Address officeAddress;
+}
+```
+How we can define BLOB and CLOB field in hibernate entity.
+```
+```
+@Entity
+@Table(name = "users")
+public class User {
+	// natural (primary) keys are primary keys we have to provide the value
+	// unique keys are surrogate keys and it does'nt have business use case.
+	@Id // @EmbeddedId for primary key contains two fields
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int userId;
+	private String userName;
+	@Temporal(TemporalType.DATE) // to save date 	only
+	private Date joinedDate;
+	/*@Transient // this field will be ignored by hibernate
+	private String address;*/
+	@Embedded
+	@AttributeOverrides({
+			@AttributeOverride(name = "street", column = @Column(name = "home_street_name")), // to override attribute/column in address 
+			@AttributeOverride(name = "city", column = @Column(name = "home_city_name")),
+			@AttributeOverride(name = "state", column = @Column(name = "home_state_name")),
+			@AttributeOverride(name = "pincode", column = @Column(name = "home_pin_code"))
+	})
+	private Address homeAddress;
+	@Embedded
+	private Address officeAddress;
+	@Lob // for large blob or clob objects
+	private String description;
+}
+```
