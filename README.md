@@ -50,6 +50,7 @@ public class User {
 }
 ```
 To ignore the field in the entity JPA provides @Transient annotation
+
 ```java
 @Embeddable
 public class Address {
@@ -60,7 +61,8 @@ public class Address {
 }
 ```
 Suppose you have two address home address and office address. How we can store it in one table an with different column name.
-```
+
+```java
 @Entity
 @Table(name = "users")
 public class User {
@@ -87,8 +89,8 @@ public class User {
 }
 ```
 How we can define BLOB and CLOB field in hibernate entity.
-```
-```
+
+```java
 @Entity
 @Table(name = "users")
 public class User {
