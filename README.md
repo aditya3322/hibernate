@@ -6,11 +6,11 @@ This is project contains some useful hibernate internals for understanding basic
 Hibernate Version: 5.3.2
 Postgresql Version: 9.1
 
-## Scenario 1
+## Basic Concepts
 
 Define User @Entity with @Embeddable Address which will put data user table.
 
-```
+```java
 @Entity
 @Table(name = "users")
 public class User {
@@ -23,7 +23,7 @@ public class User {
 }
 ``` 
 Address Embeddable object: 
-```
+```java
 @Embeddable
 public class Address {
 
@@ -37,5 +37,27 @@ public class Address {
 	private String pincode;
 }
 ``` 
+Create primary key was a composite key using @EmbeddedId which call as surrogate key
+```java
+@Entity
+@Table(name = "users")
+public class User {
+	// natural (primary) keys are primary keys we have to provide the value
+	// unique keys are surrogate keys and it does'nt have business use case.
+	@EmbeddedId for primary key contains two fields
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int userId;
+}
+```
+To ignore the field in the entity JPA provides @Transient annotation
+```java
+@Embeddable
+public class Address {
+	@Transient
+	private String street;
+	@Column (name = "city_name")
+	private String city;
+}
+```
 
 
