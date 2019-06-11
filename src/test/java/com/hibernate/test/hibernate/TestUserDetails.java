@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.hibernate.test.hibernate.dto.Address;
 import com.hibernate.test.hibernate.dto.User;
+import com.hibernate.test.hibernate.factories.PosgresSessionFactory;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -28,7 +29,7 @@ public class TestUserDetails extends TestCase
     public TestUserDetails( String testName )
     {
         super( testName );
-        factory = new Configuration().configure().buildSessionFactory();;
+        factory = PosgresSessionFactory.getInstance();
        
     }
 

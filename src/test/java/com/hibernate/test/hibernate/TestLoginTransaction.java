@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.hibernate.test.hibernate.dto.Transactions;
 import com.hibernate.test.hibernate.dto.User;
+import com.hibernate.test.hibernate.factories.PosgresSessionFactory;
 import com.hibernate.test.hibernate.dto.Log;
 
 import junit.framework.Test;
@@ -29,7 +30,7 @@ public class TestLoginTransaction extends TestCase {
 	 */
 	public TestLoginTransaction(String testName) {
 		super(testName);
-		factory = new Configuration().configure().buildSessionFactory();
+		factory = PosgresSessionFactory.getInstance();
 	}
 
 	/**
